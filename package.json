@@ -1,0 +1,27 @@
+{
+  "name": "identita",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx parcel src/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gubr2/identita.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gubr2/identita/issues"
+  },
+  "homepage": "https://github.com/Gubr2/identita#readme",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.8.0",
+    "gsap": "^3.11.3",
+    "ml5": "^0.12.2",
+    "p5": "^1.5.0",
+    "parcel": "^2.8.0"
+  }
+}

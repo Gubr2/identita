@@ -1,0 +1,60 @@
+.menu {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 6rem;
+  padding: 1rem;
+  box-sizing: border-box;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+}
+
+.menu__container {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(94.07deg, #1f2131 0%, #2a3738 100%);
+  border-radius: 1rem;
+  padding: 1rem 1.5rem;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu__logo {
+  margin: 0;
+  color: $purpleDefault;
+  font-size: 1.4rem;
+  font-family: rift-soft, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  span {
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400;
+    font-size: 1.2rem;
+    color: $white;
+    vertical-align: middle;
+  }
+}
+
+.menu__icon {
+  width: 2.5rem;
+  height: 100%;
+  cursor: pointer;
+}
+
+.menu__icon__line {
+  position: absolute;
+  width: 2.5rem;
+  height: 0.1rem;
+  background-color: $purpleLight;
+  transform: translateY(-50%);
+  &:nth-child(1) {
+    top: 45%;
+  }
+  &:nth-child(2) {
+    top: 55%;
+  }
+}
