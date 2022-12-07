@@ -25,7 +25,10 @@
   transform: translateY(-50%);
   width: 100vw;
   height: 93vh;
-  border: 4rem #000 solid;
+  border-left: 8rem #000 solid;
+  border-right: 8rem #000 solid;
+  border-top: 50vh #000 solid;
+  border-bottom: 50vh #000 solid;
   border-radius: 10rem;
   box-sizing: border-box;
   filter: drop-shadow(0rem 0rem 5rem #000000) blur(0.5rem);
@@ -38,9 +41,9 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  border-top: 7.5vh #000 solid;
+  border-top: 7.5rem #000 solid;
   border-right: 3.5rem #000 solid;
-  border-bottom: 7.5vh #000 solid;
+  border-bottom: 7.5rem #000 solid;
   border-left: 3.5rem #000 solid;
   box-sizing: border-box;
   /* filter: blur(5rem); */
@@ -72,10 +75,10 @@
   filter: brightness(1.2) contrast(300%) saturate(0%) invert(100%) blur(1rem);
 }
 
-.filter--3__canvas {
-  border: solid 1.5rem black;
-  box-sizing: border-box;
-}
+// .filter--3__canvas {
+//   border: solid 1.5rem black;
+//   box-sizing: border-box;
+// }
 
 /*  */
 /* ANIMATIONS */

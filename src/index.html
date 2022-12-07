@@ -12,13 +12,32 @@
     <link rel="stylesheet" href="https://use.typekit.net/geb2yvq.css" />
   </head>
   <body>
+    <div class="controls">
+      <div class="controls__wrapper">
+        <div class="controls__logo">
+          <h1 data-controls="item">Face Recognition</h1>
+          <h5 data-controls="item">History</h5>
+        </div>
+        <img src="./static/thumbnail-min.png" class="controls__image" data-controls="item" />
+        <p class="controls__text" data-controls="item">Discover the evolution of Face Recognition technologies</p>
+        <button class="controls__button" data-controls="item">Get Started<span class="material-symbols-outlined"> arrow_right_alt </span></button>
+      </div>
+      <div class="controls__loading">
+        <div class="lds-ring">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+    </div>
     <div class="menu">
       <div class="menu__container">
         <p class="menu__logo">Facial Recognition <span>History</span></p>
-        <div class="menu__icon">
+        <!--<div class="menu__icon">
           <div class="menu__icon__line"></div>
           <div class="menu__icon__line"></div>
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="ui__extra__text">
@@ -45,7 +64,13 @@
                 <div class="ui__names__name__content__container__gradient ui__names__name__content__container__gradient--bottom"></div>
               </div>
               <div class="ui__names__name__content__container">
-                <p style="margin-top: 100vh">Lorem ipsum dolor sit amet</p>
+                <h1>It was the first semi-automated Facial recognition system!</h1>
+                <img src="./static/rand.webp" />
+                <p>
+                  Many would say that the father of facial recognition was Woodrow Wilson Bledsoe. Working in the 1960s, Bledsoe developed a system that could classify photos of faces by hand using what’s known as a RAND tablet, a device that people could use to input horizontal and vertical coordinates on a grid using a stylus that emitted electromagnetic pulses. The system could be used to manually record the coordinate locations of various facial features including the eyes, nose, hairline and mouth.<br /><br />
+                  These metrics could then be inserted in a database. Then, when the system was given a new photograph of an individual, it was able to retrieve the image from the database that most closely resembled that individual. At the time, face recognition was unfortunately limited severely by the technology of the era and computer processing power. However, it was an important first step in proving that face recognition was a viable bio metric.
+                </p>
+                <p class="source">Source: <a href="https://medium.com/coinmonks/from-the-rand-tablet-to-differentiating-identical-twins-aa4ba6031bb0">www.medium.com</a></p>
               </div>
             </div>
           </div>
@@ -60,7 +85,10 @@
                 <div class="ui__names__name__content__container__gradient ui__names__name__content__container__gradient--bottom"></div>
               </div>
               <div class="ui__names__name__content__container">
-                <p style="margin-top: 100vh">Lorem ipsum dolor sit amet</p>
+                <h1>Using 21 subjective facial markers for automated face recognition</h1>
+                <img src="./static/21.webp" />
+                <p>Goldstein, Harmon, and Lesk used 21 specific subjective markers, such as hair color and lip thickness, to automate the recognition. The measurements and locations needed to be manually computed, causing the program to require a lot of labor time. But it provided a better accuracy as compared to the RAND Tablet technology.</p>
+                <p class="source">Source: <a href="https://medium.com/coinmonks/from-the-rand-tablet-to-differentiating-identical-twins-aa4ba6031bb0">www.medium.com</a></p>
               </div>
             </div>
           </div>
@@ -75,7 +103,13 @@
                 <div class="ui__names__name__content__container__gradient ui__names__name__content__container__gradient--bottom"></div>
               </div>
               <div class="ui__names__name__content__container">
-                <p style="margin-top: 100vh">Lorem ipsum dolor sit amet</p>
+                <h1>Using Linear Algebra for Facial recognition!</h1>
+                <img src="./static/eigenfaces.jpg" />
+                <p>
+                  In 1988, Sirovich and Kirby began applying linear algebra to the problem of facial recognition. What became known as the Eigenface approach started as a search for a low-dimensional representation of facial images. Sirovich and Kriby were able to show that feature analysis on a collection of facial images could form a set of basic features. They were also able to show that less than one hundred values were required in order to accurately code a normalized face image.<br /><br />
+                  In 1991, Turk and Pentland expanded upon the Eigenface approach by discovering how to detect faces within images. This led to the first instances of automatic face recognition. Their approach was constrained by technological and environmental factors, but it was a significant breakthrough in proving the feasibility of automatic facial recognition.
+                </p>
+                <p class="source">Source: <a href="https://medium.com/coinmonks/from-the-rand-tablet-to-differentiating-identical-twins-aa4ba6031bb0">www.medium.com</a></p>
               </div>
             </div>
           </div>
@@ -90,7 +124,13 @@
                 <div class="ui__names__name__content__container__gradient ui__names__name__content__container__gradient--bottom"></div>
               </div>
               <div class="ui__names__name__content__container">
-                <p style="margin-top: 100vh">Lorem ipsum dolor sit amet</p>
+                <h1>The famous photo tagging feature introduced by Facebook!</h1>
+                <img src="./static/social-media.webp" />
+                <p>
+                  The year 2010 marked a great change in the social media platforms all over the world, when Facebook introduced the photo tagging feature for it’s user. What this basically does is that when a person tags a photo, the system automatically recognizes the face of everyone which is present in that photo, but only if that person is a part of the Facebook family.<br /><br />
+                  But this feature was not at all accurate, and was rather a Hit and miss success rate. It had difficulty in recognizing side faces, blurred images, etc. So, this when Facebook got into developing this technology along with other tech giants like Google and IBM.
+                </p>
+                <p class="source">Source: <a href="https://medium.com/coinmonks/from-the-rand-tablet-to-differentiating-identical-twins-aa4ba6031bb0">www.medium.com</a></p>
               </div>
             </div>
           </div>
@@ -105,7 +145,15 @@
                 <div class="ui__names__name__content__container__gradient ui__names__name__content__container__gradient--bottom"></div>
               </div>
               <div class="ui__names__name__content__container">
-                <p style="margin-top: 100vh">Lorem ipsum dolor sit amet</p>
+                <h1>A deep leaning facial recognition system</h1>
+                <img src="./static/deepface.jpg" />
+                <p>
+                  After the failure of its photo tagging feature, Facebook got serious about this technology and started its research in the Facebook’s AI lab and named it the DeepFace.<br /><br />
+                  This technology is based on machine learning sub-branch called Deep Learning. It identifies human faces in digital images. It employs a nine-layer neural net with over 120 million connection weights, and was trained on four million images uploaded by Facebook users.<br /><br />
+                  The interesting thing is that the 4 million images using to train this system were taken from the profile of just 4030 active Facebook users! The accuracy of this system is 97.35%, which is still 0.28% less than that of a human.
+                </p>
+
+                <p class="source">Source: <a href="https://medium.com/coinmonks/from-the-rand-tablet-to-differentiating-identical-twins-aa4ba6031bb0">www.medium.com</a></p>
               </div>
             </div>
           </div>
@@ -114,7 +162,7 @@
       <div class="ui__years">
         <div class="ui__years__container">
           <div class="ui__years__year ui__years__year--active">
-            <p class="ui__years__year__value">1970's</p>
+            <p class="ui__years__year__value">1960's</p>
             <div class="ui__years__year__mark"></div>
           </div>
           <div class="ui__years__year">
@@ -122,23 +170,31 @@
             <div class="ui__years__year__mark"></div>
           </div>
           <div class="ui__years__year">
-            <p class="ui__years__year__value">1970's</p>
+            <p class="ui__years__year__value">Late 1980's—Early 1990's</p>
             <div class="ui__years__year__mark"></div>
           </div>
           <div class="ui__years__year">
-            <p class="ui__years__year__value">1970's</p>
+            <p class="ui__years__year__value">2010</p>
             <div class="ui__years__year__mark"></div>
           </div>
           <div class="ui__years__year">
-            <p class="ui__years__year__value">1970's</p>
+            <p class="ui__years__year__value">2015</p>
             <div class="ui__years__year__mark"></div>
           </div>
           <div class="ui__years__line"></div>
         </div>
       </div>
       <div class="ui__bottom-gradient"></div>
-      <button class="ui__btn ui__btn--left"></button>
-      <button class="ui__btn ui__btn--right"></button>
+      <button class="ui__btn ui__btn--left">
+        <div class="ui__btn__container">
+          <span class="material-symbols-outlined"> chevron_right </span>
+        </div>
+      </button>
+      <button class="ui__btn ui__btn--right">
+        <div class="ui__btn__container">
+          <span class="material-symbols-outlined"> chevron_right </span>
+        </div>
+      </button>
     </nav>
 
     <div class="ui__togglecover"></div>

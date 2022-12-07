@@ -10,9 +10,11 @@ import ml5 from 'ml5'
 
 import Data from './modules/data'
 import UI from './modules/ui'
+import Controls from './modules/controls'
 
 const data = new Data()
 const ui = new UI()
+const controls = new Controls()
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -47,6 +49,8 @@ let facemeshResult = []
 let btn = {
   left: document.querySelector('.ui__btn--left'),
   right: document.querySelector('.ui__btn--right'),
+  leftContainer: document.querySelector('.ui__btn--left .ui__btn__container'),
+  rightContainer: document.querySelector('.ui__btn--right .ui__btn__container'),
   deepLearning: {
     container: document.querySelector('.ui__extra'),
     stepFirst: document.querySelector('.ui__extra__btn--1'),
@@ -110,6 +114,7 @@ let canvas = {
 
 let flags = {
   end: false,
+  start: true,
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -133,14 +138,10 @@ const init = (_p5) => {
     video.capture.size(settings.resolution.width, settings.resolution.height)
 
     // ---> Facemesh
-    if (settings.toggle.ml) {
-      facemesh = ml5.facemesh(video.capture, afterModelLoaded)
-      facemesh.on('face', (_results) => {
-        facemeshResult = _results
-      })
-    } else {
-      afterModelLoaded()
-    }
+    facemesh = ml5.facemesh(video.capture, afterModelLoaded)
+    facemesh.on('face', (_results) => {
+      facemeshResult = _results
+    })
   }
 
   _p5.draw = () => {
@@ -349,7 +350,7 @@ const init = (_p5) => {
           facemeshResult[0].scaledMesh.forEach((_point, _index) => {
             _p5.fill('#A08EE8')
             _p5.noStroke()
-            _p5.ellipse(_point[0] * settings.resolution.mesh.rescale, _point[1] * settings.resolution.mesh.rescale, 6, 6)
+            _p5.ellipse(_point[0] * settings.resolution.mesh.rescale, _point[1] * settings.resolution.mesh.rescale, 5, 5)
           })
 
           // ---> Step 2
@@ -385,12 +386,19 @@ const init = (_p5) => {
   }
 }
 
-new p5(init, 'capture')
+controls.handleStart().then(() => {
+  new p5(init, 'capture')
+})
 
 // ***********************************************
 // ---> After Model Loaded
 function afterModelLoaded() {
-  console.log('loaded')
+  controls.hideLoading()
+  setTimeout(() => {
+    ui.animateMenu()
+    ui.animateUI()
+    ui.animateFirstFilter()
+  }, 750)
 
   video = {
     capture: null,
@@ -400,6 +408,8 @@ function afterModelLoaded() {
   canvas = {
     selector: document.querySelector('main'),
   }
+
+  ui.animateCanvas(canvas.selector)
 
   buttonHandler()
   handleExtraButtons()
@@ -420,11 +430,16 @@ function buttonHandler() {
   // ---> Left
   btn.left.addEventListener('click', () => {
     if (ui.flags.buttons) {
-      // [] ---> Block on End
       if (version.value > 1) {
         version.value -= 1
 
         handleDiv(version.value, version.value + 1)
+      }
+
+      // [] ---> Block on End
+      if (version.value == 1) {
+        btn.left.style.pointerEvents = 'none'
+        btn.leftContainer.style.opacity = '0'
       }
 
       // [] ---> Handle Styles
@@ -449,17 +464,25 @@ function buttonHandler() {
 
       // [] ---> Set end flag
       flags.end = false
+
+      // [] ---> Handle button functions
+      btn.right.style.pointerEvents = 'all'
+      btn.rightContainer.style.opacity = '1'
     }
   })
 
   // ---> Right
   btn.right.addEventListener('click', () => {
     if (ui.flags.buttons) {
-      // [] ---> Block on End
       if (version.value < version.amount) {
         version.value += 1
 
         handleDiv(-version.value, version.value - 1)
+      }
+      // [] ---> Block on End
+      if (version.value == version.amount) {
+        btn.right.style.pointerEvents = 'none'
+        btn.rightContainer.style.opacity = '0'
       }
 
       // [] ---> Handle Styles
@@ -487,6 +510,10 @@ function buttonHandler() {
 
       // [] ---> Animate years
       ui.handleYears(-30 * (version.value - 1), version.value - 1)
+
+      // [] ---> Handle button functions
+      btn.left.style.pointerEvents = 'all'
+      btn.leftContainer.style.opacity = '1'
     }
   })
 }
