@@ -18,6 +18,7 @@ export default class UI {
     }
 
     this.handleContent()
+    this.hideLastToggle()
 
     this.flags = {
       content: false,
@@ -71,23 +72,43 @@ export default class UI {
   }
 
   animateFirstFilter() {
-    gsap.fromTo(
-      this.selectors.firstFilter,
-      {
-        borderTop: '50vh solid #000',
-        borderBottom: '50vh solid #000',
-        borderLeft: '8rem solid #000',
-        borderRight: '8rem solid #000',
-      },
-      {
-        borderTop: '4rem solid #000',
-        borderBottom: '4rem solid #000',
-        borderLeft: '4rem solid #000',
-        borderRight: '4rem solid #000',
-        duration: 1,
-        ease: 'expo.inOut',
-      }
-    )
+    if (window.innerWidth > 1000) {
+      gsap.fromTo(
+        this.selectors.firstFilter,
+        {
+          borderTop: '50vh solid #000',
+          borderBottom: '50vh solid #000',
+          borderLeft: '35vw solid #000',
+          borderRight: '35vw solid #000',
+        },
+        {
+          borderTop: '6rem solid #000',
+          borderBottom: '6rem solid #000',
+          borderLeft: '25vw solid #000',
+          borderRight: '25vw solid #000',
+          duration: 1,
+          ease: 'expo.inOut',
+        }
+      )
+    } else {
+      gsap.fromTo(
+        this.selectors.firstFilter,
+        {
+          borderTop: '50vh solid #000',
+          borderBottom: '50vh solid #000',
+          borderLeft: '8rem solid #000',
+          borderRight: '8rem solid #000',
+        },
+        {
+          borderTop: '4rem solid #000',
+          borderBottom: '4rem solid #000',
+          borderLeft: '4rem solid #000',
+          borderRight: '4rem solid #000',
+          duration: 1,
+          ease: 'expo.inOut',
+        }
+      )
+    }
   }
 
   handleNames(_destination, _index) {
@@ -196,62 +217,19 @@ export default class UI {
     this.selectors.toggle[_index].classList.add('ui__names__name__toggle--active')
   }
 
-  handleContent() {
+  hideLastToggle() {
     this.selectors.toggle.forEach((_item, _index) => {
+      if (_index == this.selectors.toggle.length - 1) {
+        _item.style.display = 'none'
+      }
+    })
+  }
+
+  handleContent() {
+    // ---> Open
+    this.selectors.names.forEach((_item, _index) => {
       _item.addEventListener('click', () => {
-        if (this.flags.content) {
-          // ---> Content
-          gsap.to(this.selectors.content[_index], {
-            height: '100%',
-            width: '100%',
-            left: '0%',
-            boxShadow: '0rem 0rem 10rem rgba(0, 0, 0, 0)',
-            duration: 0.75,
-            ease: 'expo.inOut',
-            overwrite: true,
-          })
-
-          // ---> Container
-          gsap.to(this.selectors.container[_index], {
-            opacity: 0,
-            duration: 0.25,
-            overwrite: true,
-            onComplete: () => {
-              this.selectors.container[_index].style.display = 'none'
-            },
-          })
-
-          // ---> Gradients
-          gsap.to(this.selectors.gradients[_index], {
-            opacity: 0,
-            duration: 0.75,
-            ease: 'expo.inOut',
-            overwrite: true,
-            onComplete: () => {
-              this.selectors.gradients[_index].style.display = 'none'
-            },
-          })
-
-          // ---> Icon
-          gsap.to(this.selectors.toggleIcon[_index], {
-            rotate: '-90deg',
-            duration: 0.75,
-            ease: 'expo.inOut',
-            overwrite: true,
-          })
-
-          // ---> Toggle Cover
-          gsap.to(this.selectors.toggleCover, {
-            opacity: 0,
-            duration: 0.75,
-            ease: 'expo.inOut',
-            overwrite: true,
-          })
-
-          // ---> Flag
-          this.flags.content = false
-          this.flags.buttons = true
-        } else {
+        if (!this.flags.content) {
           // ---> Content
           gsap.to(this.selectors.content[_index], {
             height: '80vh',
@@ -261,6 +239,11 @@ export default class UI {
             duration: 0.75,
             ease: 'expo.inOut',
             overwrite: true,
+            onComplete: () => {
+              // ---> Flag
+              this.flags.content = true
+              this.flags.buttons = false
+            },
           })
 
           // ---> Container
@@ -302,9 +285,71 @@ export default class UI {
             overwrite: true,
           })
 
-          // ---> Flag
-          this.flags.content = true
-          this.flags.buttons = false
+          // ---> Change Cursor
+          _item.style.cursor = 'default'
+        }
+      })
+    })
+
+    // ---> Close
+    this.selectors.toggle.forEach((_item, _index) => {
+      _item.addEventListener('click', () => {
+        if (this.flags.content) {
+          // ---> Content
+          gsap.to(this.selectors.content[_index], {
+            height: '100%',
+            width: '100%',
+            left: '0%',
+            boxShadow: '0rem 0rem 10rem rgba(0, 0, 0, 0)',
+            duration: 0.75,
+            ease: 'expo.inOut',
+            overwrite: true,
+            onComplete: () => {
+              // ---> Flag
+              this.flags.content = false
+              this.flags.buttons = true
+            },
+          })
+
+          // ---> Container
+          gsap.to(this.selectors.container[_index], {
+            opacity: 0,
+            duration: 0.25,
+            overwrite: true,
+            onComplete: () => {
+              this.selectors.container[_index].style.display = 'none'
+            },
+          })
+
+          // ---> Gradients
+          gsap.to(this.selectors.gradients[_index], {
+            opacity: 0,
+            duration: 0.75,
+            ease: 'expo.inOut',
+            overwrite: true,
+            onComplete: () => {
+              this.selectors.gradients[_index].style.display = 'none'
+            },
+          })
+
+          // ---> Icon
+          gsap.to(this.selectors.toggleIcon[_index], {
+            rotate: '-90deg',
+            duration: 0.75,
+            ease: 'expo.inOut',
+            overwrite: true,
+          })
+
+          // ---> Toggle Cover
+          gsap.to(this.selectors.toggleCover, {
+            opacity: 0,
+            duration: 0.75,
+            ease: 'expo.inOut',
+            overwrite: true,
+          })
+
+          // ---> Change Cursor
+          this.selectors.names[_index].style.cursor = 'pointer'
         }
       })
     })

@@ -9,19 +9,23 @@
   z-index: 9999;
   display: flex;
   align-items: center;
+  justify-content: center;
   opacity: 0;
 }
 
 .menu__container {
-  width: 100%;
+  width: 70%;
   height: 100%;
   background: linear-gradient(94.07deg, #1f2131 0%, #2a3738 100%);
   border-radius: 1rem;
-  padding: 1rem 1.5rem;
+  padding: 1.5rem 3rem;
   box-sizing: border-box;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  @media only screen and (max-width: 1000px) {
+    width: 100%;
+  }
 }
 
 .menu__logo {
@@ -60,4 +64,15 @@
   &:nth-child(2) {
     top: 55%;
   }
+}
+
+.menu__about {
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 400;
+  color: $white;
+  vertical-align: middle;
+  display: inline-block;
+  text-decoration: none;
+  font-size: 1.4rem;
+  cursor: pointer;
 }

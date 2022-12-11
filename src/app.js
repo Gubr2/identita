@@ -11,10 +11,12 @@ import ml5 from 'ml5'
 import Data from './modules/data'
 import UI from './modules/ui'
 import Controls from './modules/controls'
+import About from './modules/about'
 
 const data = new Data()
 const ui = new UI()
 const controls = new Controls()
+const about = new About()
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -61,7 +63,7 @@ let btn = {
 }
 let version = {
   value: 1,
-  amount: 5,
+  amount: 6,
   type: {
     randTablet: {
       face: [10, 338, 297, 332, 284, 251, 389, 356, 454, 323, 361, 288, 397, 365, 379, 378, 400, 377, 152, 148, 176, 149, 150, 136, 172, 58, 132, 93, 234, 127, 162, 21, 54, 103, 67, 109],
@@ -138,10 +140,12 @@ const init = (_p5) => {
     video.capture.size(settings.resolution.width, settings.resolution.height)
 
     // ---> Facemesh
-    facemesh = ml5.facemesh(video.capture, afterModelLoaded)
-    facemesh.on('face', (_results) => {
-      facemeshResult = _results
-    })
+    if (settings.toggle.ml) {
+      facemesh = ml5.facemesh(video.capture, afterModelLoaded)
+      facemesh.on('face', (_results) => {
+        facemeshResult = _results
+      })
+    }
   }
 
   _p5.draw = () => {
@@ -382,6 +386,13 @@ const init = (_p5) => {
           }
         }
       }
+
+      //
+      // ---> V E R S I O N  6
+      //
+
+      if (version.value == 6) {
+      }
     }
   }
 }
@@ -440,6 +451,9 @@ function buttonHandler() {
       if (version.value == 1) {
         btn.left.style.pointerEvents = 'none'
         btn.leftContainer.style.opacity = '0'
+
+        // [] ---> Change background color
+        document.body.style.backgroundColor = '#dfddd4'
       }
 
       // [] ---> Handle Styles
@@ -447,13 +461,26 @@ function buttonHandler() {
       handleCanvasFilter(version.value)
       ui.handleToggle(version.value - 1)
 
-      // [] ---> Hide extra buttons on last version
-      if (version.value == version.amount - 1) {
+      // [] ---> Show extra buttons
+      if (version.value == 5) {
+        btn.deepLearning.container.style.display = 'flex'
+        version.type.deepLearning.value = 0
+
+        ui.handleExtraButtons(btn.deepLearning.stepFirst)
+
+        ui.animateExtraButtons(true)
+        ui.handleExtraTexts(btn.deepLearning.texts[0])
+      }
+
+      // [] ---> Hide extra buttons
+      if (version.value !== 5) {
         ui.animateExtraButtons(false).then(() => {
           btn.deepLearning.container.style.display = 'none'
         })
 
-        document.querySelector('.ui__extra__text__content--active').classList.remove('ui__extra__text__content--active')
+        if (document.querySelector('.ui__extra__text__content--active')) {
+          document.querySelector('.ui__extra__text__content--active').classList.remove('ui__extra__text__content--active')
+        }
       }
 
       // [] ---> Animate names
@@ -462,12 +489,15 @@ function buttonHandler() {
       // [] ---> Animate years
       ui.handleYears(-30 * (version.value - 1), version.value - 1)
 
-      // [] ---> Set end flag
-      flags.end = false
+      // // [] ---> Set end flag
+      // flags.end = false
 
       // [] ---> Handle button functions
       btn.right.style.pointerEvents = 'all'
       btn.rightContainer.style.opacity = '1'
+
+      // [] ---> Handle sources
+      handleSources(false)
     }
   })
 
@@ -483,6 +513,9 @@ function buttonHandler() {
       if (version.value == version.amount) {
         btn.right.style.pointerEvents = 'none'
         btn.rightContainer.style.opacity = '0'
+
+        // [] ---> Handle Sources
+        handleSources(true)
       }
 
       // [] ---> Handle Styles
@@ -490,18 +523,25 @@ function buttonHandler() {
       handleCanvasFilter(version.value)
       ui.handleToggle(version.value - 1)
 
-      // [] ---> Show extra buttons on last version
-      if (version.value == version.amount) {
+      // [] ---> Show extra buttons
+      if (version.value == 5) {
         btn.deepLearning.container.style.display = 'flex'
         version.type.deepLearning.value = 0
 
         ui.handleExtraButtons(btn.deepLearning.stepFirst)
 
-        if (!flags.end) {
-          ui.animateExtraButtons(true)
-          ui.handleExtraTexts(btn.deepLearning.texts[0])
+        ui.animateExtraButtons(true)
+        ui.handleExtraTexts(btn.deepLearning.texts[0])
+      }
 
-          flags.end = true
+      // [] ---> Hide extra buttons
+      if (version.value !== 5) {
+        ui.animateExtraButtons(false).then(() => {
+          btn.deepLearning.container.style.display = 'none'
+        })
+
+        if (document.querySelector('.ui__extra__text__content--active')) {
+          document.querySelector('.ui__extra__text__content--active').classList.remove('ui__extra__text__content--active')
         }
       }
 
@@ -514,6 +554,9 @@ function buttonHandler() {
       // [] ---> Handle button functions
       btn.left.style.pointerEvents = 'all'
       btn.leftContainer.style.opacity = '1'
+
+      // [] ---> Change background color
+      document.body.style.backgroundColor = '#705ac9'
     }
   })
 }
@@ -571,4 +614,12 @@ function handleDiv(_current, _previous) {
 function handleCanvasFilter(_version) {
   canvas.selector.removeAttribute('class')
   canvas.selector.classList.add(`filter--${_version}__canvas`)
+}
+
+function handleSources(_flag) {
+  if (_flag) {
+    document.querySelector('canvas').style.display = 'none'
+  } else {
+    document.querySelector('canvas').style.display = 'block'
+  }
 }

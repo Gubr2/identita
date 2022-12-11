@@ -41,9 +41,9 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  border-top: 7.5rem #000 solid;
+  border-top: calc(3.5vh + 3rem) #000 solid;
   border-right: 3.5rem #000 solid;
-  border-bottom: 7.5rem #000 solid;
+  border-bottom: calc(3.5vh + 3rem) #000 solid;
   border-left: 3.5rem #000 solid;
   box-sizing: border-box;
   /* filter: blur(5rem); */
@@ -73,6 +73,12 @@
 
 .filter--3 {
   filter: brightness(1.2) contrast(300%) saturate(0%) invert(100%) blur(1rem);
+}
+
+/* ---> Filter 6 */
+
+.filter--6 {
+  display: none;
 }
 
 // .filter--3__canvas {

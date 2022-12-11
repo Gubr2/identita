@@ -94,9 +94,12 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
+  pointer-events: none;
   &--active {
     min-height: 7.5rem;
     transform: translateY(-0.75rem);
+    cursor: pointer;
+    pointer-events: all;
   }
 }
 
@@ -325,7 +328,7 @@ nav {
 .ui__extra {
   position: absolute;
   left: 50%;
-  bottom: 17rem;
+  bottom: 18rem;
   transform: translateX(-50%);
   display: none;
   gap: 1rem;
@@ -345,7 +348,7 @@ nav {
 .ui__extra__text {
   position: absolute;
   left: 0;
-  top: 8rem;
+  top: 14rem;
   width: 100vw;
   height: 5rem;
   z-index: 9999;
@@ -396,4 +399,70 @@ nav {
   z-index: 99999;
   opacity: 0;
   pointer-events: none;
+}
+
+//
+// SOURCES
+//
+
+.ui__sources {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 9;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.ui__sources__wrapper {
+  padding: 10rem 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 55rem;
+  overflow-y: scroll;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  h1 {
+    color: $white;
+    font-size: 4rem;
+    font-family: rift-soft, sans-serif;
+  }
+  p {
+    color: $white;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400;
+    font-size: 1.7rem;
+    line-height: 2.6rem;
+    span {
+      font-size: 1.4rem;
+      font-family: 'Roboto Mono', monospace;
+      font-weight: 400;
+    }
+  }
+  a {
+    color: $darkBlue;
+    margin-left: 3rem;
+  }
+  img {
+    width: 45rem;
+    height: 35rem;
+    object-fit: cover;
+    margin: 3rem auto;
+    border-radius: 1rem;
+    transform: rotate(-5deg);
+    @media only screen and (max-width: 1200px) {
+      width: 28rem;
+      height: 19rem;
+    }
+  }
+  @media only screen and (max-width: 678px) {
+    width: 30rem;
+  }
 }

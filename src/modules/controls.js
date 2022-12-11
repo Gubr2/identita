@@ -9,6 +9,7 @@ export default class Controls {
       controlsItems: document.querySelectorAll('[data-controls="item"]'),
       button: document.querySelector('.controls__button'),
       loading: document.querySelector('.controls__loading'),
+      loadingText: document.querySelector('.controls__loading__text'),
     }
 
     this.handleMenuLogo()
@@ -31,6 +32,7 @@ export default class Controls {
           stagger: 0.05,
           onComplete: () => {
             this.showLoading()
+            this.showLoadingText()
             resolve()
           },
         })
@@ -60,5 +62,21 @@ export default class Controls {
       duration: 1,
       ease: 'expo.inOut',
     })
+  }
+
+  showLoadingText() {
+    gsap.fromTo(
+      this.selectors.loadingText,
+      {
+        y: '-2rem',
+        opacity: 0,
+      },
+      {
+        y: '0rem',
+        opacity: 1,
+        duration: 0.5,
+        ease: 'expo.inOut',
+      }
+    )
   }
 }

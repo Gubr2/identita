@@ -13,11 +13,22 @@ body {
 
 video {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100% !important;
-  height: 100% !important;
+  top: 50%;
+  left: 50%;
+  width: 50% !important;
+  height: 80% !important;
+  transform: translate(-50%, -50%);
   object-fit: cover;
+  box-shadow: inset 0rem 0rem 10rem #705ac9;
+  border-radius: 1rem;
+  @media only screen and (max-width: 1000px) {
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    transform: none;
+    border-radius: 0rem;
+  }
 }
 
 main {
@@ -29,9 +40,21 @@ main {
 
 canvas {
   position: fixed;
-  left: 0;
-  top: 0;
-  width: 100% !important;
-  height: 100% !important;
+  top: 50%;
+  left: 50%;
+  width: 50% !important;
+  height: 80% !important;
+  transform: translate(-50%, -50%);
   object-fit: cover;
+  border: 0.1rem solid #fff;
+  border-radius: 1rem;
+  @media only screen and (max-width: 1000px) {
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    transform: none;
+    border: none;
+    border-radius: 0rem;
+  }
 }
