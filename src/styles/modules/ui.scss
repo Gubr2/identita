@@ -3,7 +3,7 @@ nav {
   left: 0;
   bottom: 0;
   width: 100vw;
-  z-index: 999999;
+  z-index: 9999;
   opacity: 0;
 }
 
@@ -95,6 +95,7 @@ nav {
   align-items: center;
   justify-content: center;
   pointer-events: none;
+  box-shadow: rgb(0 0 0 / 25%) 0rem 0rem 10rem;
   &--active {
     min-height: 7.5rem;
     transform: translateY(-0.75rem);
@@ -357,6 +358,9 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
+  @media only screen and (max-width: 678px) {
+    top: 7rem;
+  }
 }
 
 .ui__extra__text__content {
@@ -378,6 +382,7 @@ nav {
 
 .ui__bottom-gradient {
   position: absolute;
+  z-index: 9;
   width: 100vw;
   height: 20vh;
   bottom: 0;
@@ -396,7 +401,7 @@ nav {
   left: 0;
   top: 0;
   background-color: #000;
-  z-index: 99999;
+  z-index: 999;
   opacity: 0;
   pointer-events: none;
 }
@@ -409,46 +414,50 @@ nav {
   position: absolute;
   left: 0;
   bottom: 0;
-  z-index: 9;
   width: 100vw;
   height: 100vh;
-  display: flex;
+  display: none;
   justify-content: center;
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 20rem;
+    left: 0;
+    z-index: 999;
+    top: 0;
+    background: linear-gradient(180deg, rgba(112, 90, 201, 1) 25%, rgba(112, 90, 201, 0) 100%);
+  }
+  &::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 30rem;
+    left: 0;
+    z-index: 9;
+    bottom: 0;
+    background: linear-gradient(0deg, rgba(112, 90, 201, 1) 50%, rgba(112, 90, 201, 0) 100%);
+  }
 }
 
 .ui__sources__wrapper {
-  padding: 10rem 0;
+  padding: 15rem 0 30rem 0;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 55rem;
-  overflow-y: scroll;
   -ms-overflow-style: none; /* IE and Edge */
+  overflow-y: scroll;
   scrollbar-width: none; /* Firefox */
   &::-webkit-scrollbar {
     display: none;
   }
   h1 {
     color: $white;
-    font-size: 4rem;
+    font-size: 3.6rem;
     font-family: rift-soft, sans-serif;
-  }
-  p {
-    color: $white;
-    font-family: 'Roboto Mono', monospace;
-    font-weight: 400;
-    font-size: 1.7rem;
-    line-height: 2.6rem;
-    span {
-      font-size: 1.4rem;
-      font-family: 'Roboto Mono', monospace;
-      font-weight: 400;
-    }
-  }
-  a {
-    color: $darkBlue;
-    margin-left: 3rem;
+    margin-bottom: 5rem;
   }
   img {
     width: 45rem;
@@ -464,5 +473,84 @@ nav {
   }
   @media only screen and (max-width: 678px) {
     width: 30rem;
+  }
+}
+
+.ui__sources__items {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  a {
+    text-decoration: none;
+    &:not(:last-child) {
+      border-bottom: 0.1rem solid $darkBlue;
+    }
+  }
+}
+
+.ui__sources__items__item {
+  position: relative;
+  width: 100%;
+  background-color: $purpleDefault;
+  // filter: drop-shadow(0 0.25rem 1rem rgba($color: #000000, $alpha: 0.25));
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding-bottom: 2.75rem;
+  margin-top: 0.5rem;
+  &:hover {
+    .ui__sources__items__item__btn {
+      span {
+        transform: translateX(0.5rem);
+      }
+    }
+  }
+  @media only screen and (max-width: 678px) {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-bottom: 1rem;
+  }
+}
+
+.ui__sources__items__item__title {
+  margin: 0;
+  font-family: rift-soft, sans-serif;
+  font-size: 2.5rem;
+  line-height: 2.5rem;
+  color: $white;
+  width: 75%;
+  @media only screen and (max-width: 678px) {
+    width: 100%;
+  }
+}
+
+.ui__sources__items__item__btn {
+  display: flex;
+  align-items: center;
+  color: $white;
+  span {
+    transition: 0.25s ease-in-out;
+    font-size: 2rem;
+    margin-left: 0.5rem;
+  }
+  @media only screen and (max-width: 678px) {
+    margin-top: 4rem;
+  }
+}
+
+.ui__sources__items__item__author {
+  position: absolute;
+  bottom: -0.75rem;
+  left: 0;
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 700;
+  font-size: 1.2rem;
+  line-height: 2.6rem;
+  color: $darkBlue;
+  @media only screen and (max-width: 678px) {
+    bottom: 3rem;
   }
 }

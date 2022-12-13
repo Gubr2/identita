@@ -9,6 +9,9 @@
   padding: 2rem;
   display: none;
   justify-content: center;
+  @media only screen and (max-width: 678px) {
+    width: 30rem;
+  }
 }
 
 .about__container {
@@ -46,7 +49,7 @@
     font-size: 1.7rem;
     line-height: 2.6rem;
     span {
-      font-size: 1.4rem;
+      font-size: 1.2rem;
       font-family: 'Roboto Mono', monospace;
       font-weight: 400;
     }

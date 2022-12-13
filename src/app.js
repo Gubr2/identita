@@ -110,6 +110,10 @@ let canvas = {
   selector: null,
 }
 
+let selectors = {
+  sources: document.querySelector('.ui__sources'),
+}
+
 //
 // FLAGS
 //
@@ -137,6 +141,7 @@ const init = (_p5) => {
 
     // ---> Webcam
     video.capture = _p5.createCapture(_p5.VIDEO)
+    video.capture.elt.classList.add('webcam')
     video.capture.size(settings.resolution.width, settings.resolution.height)
 
     // ---> Facemesh
@@ -413,7 +418,7 @@ function afterModelLoaded() {
 
   video = {
     capture: null,
-    selector: document.querySelector('video'),
+    selector: document.querySelector('.webcam'),
   }
 
   canvas = {
@@ -498,6 +503,9 @@ function buttonHandler() {
 
       // [] ---> Handle sources
       handleSources(false)
+
+      // [] ---> Hide Sources
+      selectors.sources.style.display = 'none'
     }
   })
 
@@ -516,6 +524,9 @@ function buttonHandler() {
 
         // [] ---> Handle Sources
         handleSources(true)
+
+        // [] ---> Show Sources
+        selectors.sources.style.display = 'flex'
       }
 
       // [] ---> Handle Styles
